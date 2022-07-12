@@ -36,6 +36,9 @@ gem 'redis', '~> 4.0'
 # Haml is a templating engine for HTML.
 gem 'haml'
 
+# Devise is a flexible authentication solution for Rails based on Warden.
+gem 'devise'
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem 'kredis'
 
