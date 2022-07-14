@@ -1,3 +1,3 @@
 class Market < ApplicationRecord
-  has_many :categories, dependent: :destroy
+  has_and_belongs_to_many :categories
 end
