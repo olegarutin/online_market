@@ -39,6 +39,9 @@ gem 'haml'
 # Devise is a flexible authentication solution for Rails based on Warden.
 gem 'devise'
 
+# This gem is generates fake data.
+gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem 'kredis'
 

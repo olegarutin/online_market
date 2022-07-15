@@ -1,4 +1,4 @@
 class Category < ApplicationRecord
-  belongs_to :market
-  has_many :products
+  has_and_belongs_to_many :markets
+  has_and_belongs_to_many :products
 end
