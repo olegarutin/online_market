@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :markets, :categories, only: %i[index show]
+  resources :products, only: :index
 end
