@@ -1,0 +1,20 @@
+.container.mx-auto.mt-10.text-indigo-500
+  .flex.shadow-md.my-10.justify-around
+    .bg-white.px-10.py-10.rounded-lg{ class: 'w-4/6' }
+      .flex.justify-between.border-b.pb-8
+        %h1.font-semibold.text-2xl Shopping Cart
+        %h2.font-semibold.text-2xl
+          = current_cart.line_items.count
+          Items
+      .flex.mt-10.mb-5
+        %h3.font-semibold.text-gray-600.text-xs.uppercase{ class: 'w-2/5' } Product Details
+        %h3.font-semibold.text-center.text-gray-600.text-xs.uppercase.text-center{ class: 'w-1/5' } Quantity
+        %h3.font-semibold.text-center.text-gray-600.text-xs.uppercase.text-center{ class: 'w-1/5' } Price
+        %h3.font-semibold.text-center.text-gray-600.text-xs.uppercase.text-center{ class: 'w-1/5' } Total
+
+      = render current_cart.line_items
+
+      %a.flex.font-semibold.text-indigo-600.text-sm.mt-10{ href: '#' }
+        %svg.fill-current.mr-2.text-indigo-600.w-4{ viewbox: '0 0 448 512' }
+          %path{d: 'M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z' }
+        Continue Shopping
