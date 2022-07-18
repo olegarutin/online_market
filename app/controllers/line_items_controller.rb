@@ -1,12 +1,31 @@
 class LineItemsController < ApplicationController
-  before_action :set_line_item, only: :create
+  before_action :set_line_item, :authenticate_user!
 
   def create
     if @line_item
       @line_item.increment!(:quantity)
     else
       @line_item = LineItem.create(line_item_params)
+
+      render :create
     end
+  end
+
+  def update
+    return unless ['increment', 'decrement'].include?(params[:operator])
+
+    case params[:operator]
+    when 'increment'
+      @line_item.increment!(:quantity)
+    when 'decrement'
+      return if @line_item.quantity < 2
+
+      @line_item.decrement!(:quantity)
+    end
+  end
+
+  def destroy
+    @line_item.destroy
   end
 
   private
@@ -16,6 +35,10 @@ class LineItemsController < ApplicationController
   end
 
   def set_line_item
-    @line_item = current_cart.line_items.find_by(product: params[:product_id])
+    if params[:product_id]
+      @line_item = current_cart.line_items.find_by(product: params[:product_id])
+    elsif params[:id]
+      @line_item = LineItem.find(params[:id])
+    end
   end
 end
