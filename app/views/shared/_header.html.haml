@@ -1,4 +1,4 @@
-%nav.bg-gray-200.shadow.shadow-gray-300.w-100.px-8.md:px-auto
+%nav.bg-gray-200.shadow.shadow-gray-300.fixed.top-0.z-10.w-full.px-8.md:px-auto
   .md:h-16.h-28.mx-auto.md:px-4.container.flex.items-center.justify-between.flex-wrap.md:flex-nowrap
     .text-gray-500.order-3.w-full.md:w-auto.md:order-2.flex
       %svg.h-10.w-10{ fill: 'none', stroke: 'currentColor', viewbox: '0 0 24 24', xmlns: 'http://www.w3.org/2000/svg' }
@@ -13,15 +13,24 @@
     .order-2.md:order-3.flex
       %p.md:px-4.md:py-2.hover:text-indigo-400
         = current_user.email if current_user
+
       - if current_user
         = button_to destroy_user_session_path,
           class: 'px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-gray-50 rounded-xl flex items-center gap-2', method: :delete, data: { turbo: false } do
-          %svg.h-5.w-5{ fill: 'currentColor', viewbox: '0 0 20 20', xmlns: 'http://www.w3.org2000/svg' }
-            %path{ 'clip-rule': 'evenodd', d: 'M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z', 'fill-rule': 'evenodd' }
+          %img{ src: 'https://img.icons8.com/external-tal-revivo-duo-tal-revivo/20/000000/external-web-secure-session-sign-out-internet-logoff-login-duo-tal-revivo.png' }
           %span Sign Out
       - else
-        = link_to new_user_session_path,
+        = button_to new_user_session_path,
           class: 'px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-gray-50 rounded-xl flex items-center gap-2', method: :get do
-          %svg.h-5.w-5{ fill: 'currentColor', viewbox: '0 0 20 20', xmlns: 'http://www.w3.org2000/svg' }
-            %path{ 'clip-rule': 'evenodd', d: 'M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z', 'fill-rule': 'evenodd' }
+          %img{ src: 'https://img.icons8.com/external-tal-revivo-duo-tal-revivo/20/000000/external-web-secure-session-sign-out-internet-logoff-login-duo-tal-revivo.png' }
           %span Sign In
+
+      .ml-2.lg:ml-4.relative.inline-block
+        - route = current_user ? cart_path(current_cart) : new_user_session_path
+
+        = link_to route do
+          .absolute.-top-1.right-0.z-10.bg-yellow-400.text-xs.font-bold.px-1.rounded-sm{ class: 'py-0.5' }
+            = turbo_frame_tag 'header_cart_counter' do
+              = current_cart.line_items.count
+          %svg.h-9.lg:h-10.p-2.text-gray-500{ 'aria-hidden': 'true', 'data-icon': 'shopping-cart', 'data-prefix': 'far', focusable: 'false', role: 'img', viewbox: '0 0 576 512', xmlns: 'http://www.w3.org/2000/svg' }
+            %path{ d: 'M551.991 64H144.28l-8.726-44.608C133.35 8.128 123.478 0 112 0H12C5.373 0 0 5.373 0 12v24c0 6.627 5.373 12 12 12h80.24l69.594 355.701C150.796 415.201 144 430.802 144 448c0 35.346 28.654 64 64 64s64-28.654 64-64a63.681 63.681 0 0 0-8.583-32h145.167a63.681 63.681 0 0 0-8.583 32c0 35.346 28.654 64 64 64 35.346 0 64-28.654 64-64 0-18.136-7.556-34.496-19.676-46.142l1.035-4.757c3.254-14.96-8.142-29.101-23.452-29.101H203.76l-9.39-48h312.405c11.29 0 21.054-7.869 23.452-18.902l45.216-208C578.695 78.139 567.299 64 551.991 64zM208 472c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm256 0c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm23.438-200H184.98l-31.31-160h368.548l-34.78 160z', fill: 'currentColor' }
