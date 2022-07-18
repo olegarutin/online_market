@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_17_142920) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_18_171504) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_17_142920) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.integer "status", default: 0
+    t.bigint "order_id"
+    t.index ["order_id"], name: "index_carts_on_order_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
@@ -45,9 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_17_142920) do
     t.datetime "updated_at", null: false
     t.bigint "cart_id"
     t.bigint "product_id"
-    t.bigint "order_id"
     t.index ["cart_id"], name: "index_line_items_on_cart_id"
-    t.index ["order_id"], name: "index_line_items_on_order_id"
     t.index ["product_id"], name: "index_line_items_on_product_id"
   end
 
@@ -91,9 +91,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_17_142920) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "carts", "orders"
   add_foreign_key "carts", "users"
   add_foreign_key "line_items", "carts"
-  add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "products"
   add_foreign_key "orders", "users"
 end

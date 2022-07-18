@@ -5,6 +5,8 @@ class Cart < ApplicationRecord
   STATUSES = [IN_PROGRESS, ORDERED].freeze
 
   belongs_to :user
+  belongs_to :order, optional: true
+
   has_many :line_items, dependent: :destroy
   has_many :products, through: :line_items
 
