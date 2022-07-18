@@ -1,0 +1,29 @@
+.flex.my-10.justify-around
+  .bg-white.px-10.pb-10.rounded-lg{ class: 'w-3/6' }
+    .flex.mt-10.mb-5
+      %h3.font-semibold.text-gray-600.text-xs.uppercase{ class: 'w-2/5' } Product Details
+      %h3.font-semibold.text-center.text-gray-600.text-xs.uppercase.text-center{ class: 'w-1/5' } Quantity
+      %h3.font-semibold.text-center.text-gray-600.text-xs.uppercase.text-center{ class: 'w-1/5' } Price
+      %h3.font-semibold.text-center.text-gray-600.text-xs.uppercase.text-center{ class: 'w-1/5' } Total
+    -if order.cart.present?
+      - order.cart.line_items.each do |line_item|
+        .flex.items-center.hover:bg-gray-100.-mx-8.px-6.py-5
+          .flex.mr-4{ class: 'w-2/5' }
+            .w-20
+              %img.h-24{ alt: '', src: 'https://img.freepik.com/premium-vector/flat-design-farmers-market-logo_23-2149331958.jpg?w=2000' }
+            .flex.flex-col.justify-center.ml-4.flex-grow
+              %span.font-bold.text-sm
+                = line_item.product.title
+          .flex.flex-row.h-10.rounded-lg.relative.bg-transparent.mt-1.justify-center{ class: 'w-1/6' }
+            %span.justify-center.w-8.font-semibold.flex.items-center.text-gray-700
+              = line_item.quantity
+          %span.text-center.font-semibold.text-sm{ class: 'w-1/5' }
+            $
+            = line_item.product.price
+          %span.text-center.font-semibold.text-sm{ class: 'w-1/5' }
+            $
+            = line_item.total_price
+
+    %p.font-semibold.text-indigo-600.text-1xl.text-center
+      Total price: $
+      = order.cart&.total_price
