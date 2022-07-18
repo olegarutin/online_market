@@ -9,4 +9,8 @@ class Cart < ApplicationRecord
   has_many :products, through: :line_items
 
   enum status: STATUSES
+
+  def total_price
+    line_items.map(&:total_price).sum
+  end
 end
