@@ -4,10 +4,13 @@
     .mt-4
       %h1.text-2xl.font-bold.text-gray-700.truncate
         = product.title
-      %p.text-1xl.mt-2.text-gray-700
+      %p.text-1xl.mt-2.text-gray-700.h-32
         = product.description
       .mt-4.mb-2.flex.justify-between.pl-4.pr-2.items-center
         %p.block.text-xl.font-semibold.text-gray-700.cursor-auto
           $
           = product.price
-        = link_to 'Add to cart', '', class: 'text-lg block font-semibold py-2 px-6 text-green-100 hover:text-white bg-green-400 rounded-lg shadow hover:shadow-md transition duration-300'
+        - if current_user
+          = button_to 'Add to cart', line_items_path('[product_id]': product), method: 'post', class: 'text-lg block font-semibold py-2 px-6 text-green-100 hover:text-white bg-green-400 rounded-lg shadow hover:shadow-md transition duration-300'
+        - else
+          = link_to 'Add to cart', new_user_session_path, class: 'text-lg block font-semibold py-2 px-6 text-green-100 hover:text-white bg-green-400 rounded-lg shadow hover:shadow-md transition duration-300'

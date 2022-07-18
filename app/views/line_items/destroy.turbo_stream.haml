@@ -1,0 +1,7 @@
+= turbo_stream.update 'header_cart_counter' do
+  = current_cart.line_items.count
+= turbo_stream.update 'cart_items_counter' do
+  = current_cart.line_items.count
+
+= turbo_stream.update 'total_price' do
+  = current_cart.total_price

@@ -1,0 +1,21 @@
+.flex.items-center.hover:bg-gray-100.-mx-8.px-6.py-5{ id: dom_id(line_item) }
+  .flex.mr-4{ class: 'w-2/5' }
+    .w-20
+      %img.h-24{ alt: '', src: 'https://img.freepik.com/premium-vector/flat-design-farmers-market-logo_23-2149331958.jpg?w=2000' }
+    .flex.flex-col.justify-center.ml-4.flex-grow
+      %span.font-bold.text-sm
+        = line_item.product.title
+      = button_to 'Remove', line_items_path('id': line_item), method: :delete, class: 'font-semibold hover:text-red-500 text-gray-500 text-xs'
+  .flex.flex-row.h-10.rounded-lg.relative.bg-transparent.mt-1.justify-center{ class: 'w-1/6' }
+    = button_to line_items_path('id': line_item.id, operator: 'decrement'),method: :patch, class: 'bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-10 rounded-l cursor-pointer outline-none' do
+      %span.m-auto.text-2xl.font-thin −
+    %span.justify-center.w-8.bg-gray-300.font-semibold.flex.items-center.text-gray-700
+      = line_item.quantity
+    = button_to line_items_path('id': line_item.id, operator: 'increment'),method: :patch, class: 'bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-10 rounded-r cursor-pointer outline-none' do
+      %span.m-auto.text-2xl.font-thin +
+  %span.text-center.font-semibold.text-sm{ class: 'w-1/5' }
+    $
+    = line_item.product.price
+  %span.text-center.font-semibold.text-sm{ class: 'w-1/5' }
+    $
+    = line_item.total_price
