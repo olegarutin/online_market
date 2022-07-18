@@ -1,0 +1,5 @@
+= turbo_stream.replace ActionView::RecordIdentifier.dom_id(@line_item) do
+  = render @line_item
+
+= turbo_stream.update 'total_price' do
+  = current_cart.total_price
