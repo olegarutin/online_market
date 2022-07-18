@@ -10,6 +10,8 @@
           = link_to 'Categories', categories_path
         %li.md:px-4.md:py-2.hover:text-indigo-400{ class: "#{'text-indigo-500' if current_page?('/products')}" }
           = link_to 'Products', products_path
+        %li.md:px-4.md:py-2.hover:text-indigo-400{ class: "#{'text-indigo-500' if current_page?('/orders')}" }
+          = link_to 'My Orders', orders_path
     .order-2.md:order-3.flex
       %p.md:px-4.md:py-2.hover:text-indigo-400
         = current_user.email if current_user
