@@ -1,6 +1,6 @@
 .flex.justify-center.items-center.mb-12
   .w-80.p-6.bg-white.rounded-xl.shadow-xl.hover:shadow-2xl.hover:scale-105.transition-all.transform.duration-500
-    %img.object-cover.rounded-t-md{ alt: '', src: 'https://images.unsplash.com/photo-1509223197845-458d87318791' }
+    = image_tag(product.image, alt: '', class: 'object-cover rounded-t-md')
     .mt-4
       %h1.text-2xl.font-bold.text-gray-700.truncate
         = product.title
