@@ -42,6 +42,12 @@ gem 'devise'
 # This gem is generates fake data.
 gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 
+# Provides convenient access to the Stripe API from applications written in the Ruby language.
+gem 'stripe'
+
+# Figaro was written to make it easy to securely configure Rails applications.
+gem 'figaro'
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem 'kredis'
 
