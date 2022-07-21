@@ -4,7 +4,7 @@ class CheckoutController < ApplicationController
   def create
     @session = Stripe::Checkout::Session.create(
       { customer: current_user.stripe_customer_id,
-        success_url: 'http://localhost:3000/order/create?session_id={CHECKOUT_SESSION_ID}',
+        success_url: "#{order_create_url}?session_id={CHECKOUT_SESSION_ID}",
         cancel_url: root_url,
         payment_method_types: ['card'],
         line_items: @items,
