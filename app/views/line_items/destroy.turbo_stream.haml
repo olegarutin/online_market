@@ -5,3 +5,7 @@
 
 = turbo_stream.update 'total_price' do
   = current_cart.total_price
+
+= turbo_stream.update 'checkout_button' do
+  - if current_cart.line_items.present?
+    = button_to 'Checkout', checkout_create_path, data: { turbo: false }, method: :post, class: 'bg-indigo-500 text-1xl text-white font-bold py-2 px-4 border border-indigo-700 rounded'
