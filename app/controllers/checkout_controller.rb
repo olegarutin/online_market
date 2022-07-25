@@ -4,8 +4,8 @@ class CheckoutController < ApplicationController
   def create
     @session = Stripe::Checkout::Session.create(
       { customer: current_user.stripe_customer_id,
-        success_url: 'http://localhost:3000/order/create?session_id={CHECKOUT_SESSION_ID}',
-        cancel_url: root_url,
+        success_url: "#{order_create_url}?session_id={CHECKOUT_SESSION_ID}",
+        cancel_url: cancel,
         payment_method_types: ['card'],
         line_items: @items,
         phone_number_collection: {
@@ -19,9 +19,9 @@ class CheckoutController < ApplicationController
   end
 
   def cancel
-    root_url
-
     flash.notice = 'Something went wrong'
+
+    root_url
   end
 
   private
