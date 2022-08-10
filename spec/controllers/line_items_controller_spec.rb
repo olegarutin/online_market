@@ -9,6 +9,7 @@ describe LineItemsController do
 
   describe '#create' do
     subject { -> { post :create, params: params, format: :turbo_stream } }
+
     let(:params) { { product_id: product.id } }
 
     context 'add first product to cart' do
@@ -68,6 +69,7 @@ describe LineItemsController do
 
   describe '#destroy' do
     subject { -> { delete :destroy, params: params, format: :turbo_stream } }
+
     let(:params) { { id: line_item.id } }
 
     it { is_expected.to change { LineItem.count }.by(0) }
