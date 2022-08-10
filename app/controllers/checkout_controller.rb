@@ -11,11 +11,16 @@ class CheckoutController < ApplicationController
         phone_number_collection: {
           enabled: true
         },
+        url: nil,
         'billing_address_collection': 'required',
         mode: 'payment' }
     )
 
-    redirect_to @session.url, allow_other_host: true
+    if @session.url
+      redirect_to @session.url, allow_other_host: true
+    else
+      redirect_to root_path
+    end
   end
 
   def cancel
