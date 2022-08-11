@@ -35,3 +35,11 @@ RSpec.configure do |config|
   config.before(:each) { StripeMock.start }
   config.after(:each) { StripeMock.stop }
 end
+
+def sign_in(user)
+  visit root_path
+  click_button 'Sign In'
+  fill_in 'user_email', with: user.email
+  fill_in 'user_password', with: user.password
+  click_button 'LOG IN'
+end
