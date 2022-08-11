@@ -43,7 +43,7 @@ gem 'devise'
 gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 
 # Provides convenient access to the Stripe API from applications written in the Ruby language.
-gem 'stripe'
+gem 'stripe', '~> 5.55.0'
 
 # Figaro was written to make it easy to securely configure Rails applications.
 gem 'figaro'
@@ -68,6 +68,7 @@ gem 'bootsnap', require: false
 
 group :development, :test do
   gem 'capybara'
+  gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'pry'
   gem 'rspec-rails'
@@ -86,4 +87,5 @@ end
 
 group :test do
   gem 'selenium-webdriver'
+  gem 'stripe-ruby-mock', '~> 3.1.0.rc2', require: 'stripe_mock'
 end

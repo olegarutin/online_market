@@ -1,5 +1,5 @@
-RSpec.describe 'the signin process', type: :system do
-  let(:user) { build(:random_user) }
+describe 'the signup process' do
+  let(:user) { build(:user) }
 
   it 'new user registration' do
     visit '/users/sign_up'

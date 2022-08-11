@@ -1,5 +1,5 @@
-RSpec.describe 'the signin process', type: :system do
-  let(:user) { build(:user) }
+describe 'the signin process' do
+  let(:user) { create(:user) }
 
   it 'user login and logout' do
     visit root_path
